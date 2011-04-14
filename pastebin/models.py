@@ -12,6 +12,6 @@ class Paste(models.Model):
             )
 
     title = models.CharField(max_length=128, default = "untitled")
-    lang  = models.CharField(max_length=10, choices = LANGS)
+    lang  = models.CharField(max_length=10, choices = LANGS, default = "python")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
