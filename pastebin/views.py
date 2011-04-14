@@ -1,3 +1,4 @@
+#encoding=utf-8
 # Create your views here.
 from django.template import Context, loader
 from pastebin.models import Paste
@@ -14,11 +15,19 @@ def manage(request):
         snippet = Paste(title=t, lang=l, content=c)
         snippet.save()
     
+    #Filtrar:
+    lang = request.GET.get('l', None)
+
     #obtener todos los snippets
     snippets = Paste.objects.all()
+    #snippets es un QuerySet, y éstos son encadenables (se les
+    #pueden aplicar otros querysets)
+    if lang:
+        snippets = snippets.filter(lang=lang)
+        
     #obtener la plantilla
     template = loader.get_template('list.html')    
-    context  = Context({'snippets': snippets})
+    context  = Context({'snippets': snippets, 'langs': Paste.LANGS, 'choice':lang})
     return HttpResponse(template.render(context))
 
 def create(request):

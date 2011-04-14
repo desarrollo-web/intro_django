@@ -1,5 +1,13 @@
 {%extends "base.html"%}
 {%block contenido%}
+<form action="/snippets" method="get">
+    <select name="l">
+        {%for lang, display in langs%}
+        <option value="{{lang}}" {%if choice == lang%}selected{%endif%}>{{display}}</option>
+        {%endfor%}
+        <input type="submit" value="Filtrar"/>
+    </select>
+</form>
 <ul>
     {%for snippet in snippets%}
         <li>
