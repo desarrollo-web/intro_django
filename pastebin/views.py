@@ -3,6 +3,7 @@ from django.template import Context, loader
 from pastebin.models import Paste
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from django.http import HttpResponse
 
 def manage(request):
     if request.method == 'POST':
@@ -16,18 +17,18 @@ def manage(request):
     #obtener todos los snippets
     snippets = Paste.objects.all()
     #obtener la plantilla
-    template = loader.get_template('pastebin/list.html')    
+    template = loader.get_template('list.html')    
     context  = Context({'snippets': snippets})
     return HttpResponse(template.render(context))
 
 def create(request):
-    return render_to_response('pastebin/form.html',
-                              {},
+    return render_to_response('form.html',
+                             {"langs": Paste.LANGS},
                               context_instance=RequestContext(request))
 
 def show(request, snippet_id):
-    s = Paste.objects.get(snippet_id)
+    s = Paste.objects.get(pk=snippet_id)
 
-    return render_to_response('pastebin/show.html',
+    return render_to_response('show.html',
                               {'snippet': s },
                               context_instance=RequestContext(request))

@@ -1,0 +1,11 @@
+{%extends "base.html"%}
+{%block contenido%}
+<ul>
+    {%for snippet in snippets%}
+        <li>
+        {{snippet.title}} ({{snippet.lang}})
+        <a href="/snippets/{{snippet.pk}}"> Ver</a>
+        </li>        
+   {%endfor%}
+</ul>
+{%endblock%}

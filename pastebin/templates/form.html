@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+{%block contenido%}
+    <form action="/snippets" method="post" accept-charset="utf-8">
+        {%csrf_token%}  
+        <p><input type="text" name="title" value="" placeholder="Título"0></p>
+        <p>
+        <label for="lenguaje"></label>
+        <select name="lang" id="lenguaje">
+          {%for code, lang in langs%}
+              <option value="{{code}}">{{lang}}</option>
+          {%endfor%}
+        </select>
+        </p>
+        <p>
+            <textarea name="content" rows="8" cols="40" autofocus></textarea>
+        </p> 
+
+<p><input type="submit" value="Crear &rarr;"0></p>
+</form>
+{%endblock%}

@@ -7,8 +7,6 @@ class Paste(models.Model):
                 ('lisp', 'Lisp'),
                 ('js', 'Javascript'),
                 ('rb', 'Ruby'),
-                ('css', 'CSS'),
-                ('html', 'HTML')
             )
 
     title = models.CharField(max_length=128, default = "untitled")

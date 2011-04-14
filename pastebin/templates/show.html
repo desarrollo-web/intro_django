@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+{%block contenido%}
+    <h1>{{snippet.title}} </h1>
+    <h2>({{snippet.get_lang_display}})</h2>
+    <h3>Creado en {{snippet.created_at|date:"D/M/Y"}}</h3>
+    <pre>
+        <code>
+            {{snippet.content|linebreaks}}
+        </code>
+    </pre>
+    <script src="http://yandex.st/highlightjs/5.16/highlight.min.js"></script>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/5.16/styles/default.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+{%endblock%}
+
