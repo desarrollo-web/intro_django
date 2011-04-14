@@ -1,7 +1,9 @@
 {%extends "base.html"%}
 {%block contenido%}
 <form action="/snippets" method="get">
+    <input type="text" name="q" />
     <select name="l">
+        <option value="">Cualquiera</option>
         {%for lang, display in langs%}
         <option value="{{lang}}" {%if choice == lang%}selected{%endif%}>{{display}}</option>
         {%endfor%}

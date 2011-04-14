@@ -17,14 +17,15 @@ def manage(request):
     
     #Filtrar:
     lang = request.GET.get('l', None)
-
+    query = request.GET.get('q', None)
     #obtener todos los snippets
     snippets = Paste.objects.all()
     #snippets es un QuerySet, y éstos son encadenables (se les
     #pueden aplicar otros querysets)
     if lang:
         snippets = snippets.filter(lang=lang)
-        
+    if query:
+        snippets = snippets.filter(title__icontains=query)
     #obtener la plantilla
     template = loader.get_template('list.html')    
     context  = Context({'snippets': snippets, 'langs': Paste.LANGS, 'choice':lang})
